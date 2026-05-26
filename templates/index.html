@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Secure User Registration System</h1>
+    <div class="home-buttons">
+        <a href="{{ url_for('register') }}">
+            <button>Register</button>
+        </a>
+        <a href="{{ url_for('login') }}">
+            <button>Login</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
