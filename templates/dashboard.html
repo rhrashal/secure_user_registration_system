@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block extra_head %}
+<style>
+    .container {
+        width: 700px;
+        max-width: 95vw;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-size: 14px;
+    }
+    th {
+        background: #007BFF;
+        color: white;
+    }
+    td {
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
+        word-break: break-all;
+    }
+    .logged-in {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+    .logout-btn {
+        width: auto;
+        padding: 8px 24px;
+        margin-top: 20px;
+    }
+    body.dark-mode th {
+        background: #0f3460;
+    }
+    body.dark-mode td {
+        color: #e0e0e0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Dashboard</h2>
+    <p class="logged-in">Logged in as: {{ email }}</p>
+    <h3>All Registered Users</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Full Name</th>
+                <th>Phone</th>
+                <th>Password Hash (SHA-512)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if users %}
+            {% for u in users %}
+            <tr>
+                <td style="font-family:sans-serif">{{ u.email }}</td>
+                <td style="font-family:sans-serif">{{ u.full_name }}</td>
+                <td style="font-family:sans-serif">{{ u.phone }}</td>
+                <td>{{ u.password_hash }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align:center;font-family:sans-serif">No users registered yet.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('logout') }}">
+        <button class="logout-btn">Logout</button>
+    </a>
+</div>
+{% endblock %}
