@@ -44,6 +44,34 @@ python/
 - **Dark Mode** — Toggle persisted in `localStorage`
 - **Duplicate Email Check** — Registration rejects already-registered emails
 
+## Python Installation
+
+### Windows
+1. Download Python from [python.org](https://www.python.org/downloads/) (Python 3.14+ recommended)
+2. Run the installer → **check** "Add Python to PATH" at the bottom of the first page
+3. Open a new Command Prompt / PowerShell and verify:
+   ```bash
+   python --version
+   ```
+4. If you see a Microsoft Store popup, the Windows App execution alias is interfering. Either:
+   - Ensure your installed Python directory (e.g. `C:\Users\<user>\AppData\Local\Programs\Python\Python314\`) appears **above** `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps` in your `PATH`, or
+   - Disable the aliases at **Settings → Apps → Advanced app settings → App execution aliases** (turn off `python.exe` and `python3.exe`)
+
+### Linux (Ubuntu / Debian)
+1. Update package list and install Python 3 and pip:
+   ```bash
+   sudo apt update
+   sudo apt install python3 python3-pip -y
+   ```
+2. Verify:
+   ```bash
+   python3 --version
+   ```
+3. (Optional) Install `venv` for virtual environments:
+   ```bash
+   sudo apt install python3-venv -y
+   ```
+
 ## How to Run
 
 ### 1. Install dependencies
@@ -58,6 +86,8 @@ python -m pip install -r requirements.txt
 ```bash
 python app.py
 ```
+
+> **Ubuntu users:** Replace `python` with `python3` in the commands above (e.g. `python3 -m pip install -r requirements.txt` and `python3 app.py`).
 
 The app starts at **http://localhost:5000**.
 
